@@ -36,4 +36,9 @@ public class ManagerServiceImpl implements ManagerService{
 		return managerDAO.getManagers();
 	}
 
+	public Manager getLogManager(String usuario) {
+		
+		return managerDAO.getLogManager(usuario);
+	}
+
 }

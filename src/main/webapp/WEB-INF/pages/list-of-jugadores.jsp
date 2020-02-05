@@ -39,7 +39,7 @@
 </tbody>
 </table>
 
-<p><a class="btn btn-secondary btn-sm" role="button" href="${pageContext.request.contextPath}/index.html">Home page</a></p>
+<p><a role="button" href="${pageContext.request.contextPath}/index.html">Home page</a></p>
 
 </body>
 </html>

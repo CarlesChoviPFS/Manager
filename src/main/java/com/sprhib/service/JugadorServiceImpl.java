@@ -36,4 +36,8 @@ public class JugadorServiceImpl implements JugadorService{
 		return jugadorDAO.getJugadores();
 	}
 
+	public List<Jugador> getJugadoresEquipo(int id) {
+		return jugadorDAO.getJugadoresEquipo(id);
+	}
+
 }

@@ -20,6 +20,33 @@ public class ManagerController {
 	@Autowired
 	private ManagerService managerService;
 	
+	
+	@RequestMapping(value="/login", method=RequestMethod.GET)
+	public ModelAndView logManagerPage() {
+		ModelAndView modelAndView = new ModelAndView("log-manager-form");
+		modelAndView.addObject("manager", new Manager());
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="/login", method = RequestMethod.POST)
+	public ModelAndView logingManager(@ModelAttribute Manager manager) {
+		
+		ModelAndView modelAndView = new ModelAndView("home");
+		Manager manLog = managerService.getLogManager(manager.getUsuario());
+		if(manLog != null) {
+			if(manLog.getContr().equals(manager.getContr())){
+				String message = "Manager "+manLog.getNombre()+" logueado correctamente.";
+				modelAndView.addObject("id", manLog.getId());
+				modelAndView.addObject("message", message);
+			}
+		}else {
+			String message = "Error al entrar.";
+			modelAndView.addObject("message", message);
+			
+		}
+		return modelAndView;
+	}
+	
 	@RequestMapping(value="/add", method=RequestMethod.GET)
 	public ModelAndView addManagerPage() {
 		ModelAndView modelAndView = new ModelAndView("add-manager-form");
@@ -31,10 +58,15 @@ public class ManagerController {
 	public ModelAndView addingManager(@ModelAttribute Manager manager) {
 		
 		ModelAndView modelAndView = new ModelAndView("home");
-		managerService.addManager(manager);
-		
-		String message = "Manager insertado correctamente.";
-		modelAndView.addObject("message", message);
+		Manager manLog = managerService.getLogManager(manager.getUsuario());
+		if(manLog == null) {
+			managerService.addManager(manager);
+			String message = "Manager "+manLog.getNombre()+" insertado correctamente.";
+			modelAndView.addObject("message", message);	
+		}else {
+			String message = "Usuario ya registrado.";
+			modelAndView.addObject("message", message);
+		}
 		return modelAndView;
 	}
 	
@@ -62,11 +94,15 @@ public class ManagerController {
 	public ModelAndView edditingManager(@ModelAttribute Manager manager, @PathVariable Integer id) {
 		
 		ModelAndView modelAndView = new ModelAndView("home");
-
-		managerService.updateManager(manager);
-		
-		String message = "Manager editado correctamente.";
-		modelAndView.addObject("message", message);
+		Manager manLog = managerService.getLogManager(manager.getUsuario());
+		if(manLog == null) {
+			managerService.updateManager(manager);
+			String message = "Manager editado correctamente.";
+			modelAndView.addObject("message", message);
+		}else {
+			String message = "Error, el usuario "+manLog.getUsuario()+" ya está creado.";
+			modelAndView.addObject("message", message);
+		}
 		
 		return modelAndView;
 	}

@@ -10,6 +10,7 @@ public interface ManagerDAO {
 	public void updateManager(Manager manager);
 	public Manager getManager(int id);
 	public void deleteManager(int id);
+	public Manager getLogManager(String usuario);
 	public List<Manager> getManagers();
 	
 }

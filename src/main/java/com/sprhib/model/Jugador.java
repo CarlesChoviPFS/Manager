@@ -11,19 +11,28 @@ public class Jugador {
 	
 	@Id
 	@GeneratedValue
-	private Integer dorsal;
+	private Integer id;
 	
 	private String nombre, apellidos, posicion;
 	private Float altura, peso;
-	private Integer edad;
-	
+	private Integer dorsal, edad, equipo;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public void setDorsal(Integer dorsal) {
+		this.dorsal = dorsal;
+	}
 	
 	public Integer getDorsal() {
 		return dorsal;
 	}
-	public void setDorsal(Integer dorsal) {
-		this.dorsal = dorsal;
-	}
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -60,6 +69,13 @@ public class Jugador {
 	public void setEdad(Integer edad) {
 		this.edad = edad;
 	}
+	public Integer getEquipo() {
+		return equipo;
+	}
+	public void setEquipo(Integer equipo) {
+		this.equipo = equipo;
+	}
+
 	
 	
 

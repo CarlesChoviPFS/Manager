@@ -29,7 +29,7 @@ public class JugadorController {
 	
 	@RequestMapping(value="/add", method = RequestMethod.POST)
 	public ModelAndView addingJugador(@ModelAttribute Jugador jugador) {
-		
+		System.out.println(jugador.getId());
 		ModelAndView modelAndView = new ModelAndView("home");
 		jugadorService.addJugador(jugador);
 		
@@ -39,22 +39,13 @@ public class JugadorController {
 	}
 	
 	
-	@RequestMapping(value="/list")
-	public ModelAndView listOfJugadores() {
+	@RequestMapping(value="/list/{id}")
+	public ModelAndView listOfJugadores(@ModelAttribute Jugador jugador, @PathVariable Integer id) {
 		ModelAndView modelAndView = new ModelAndView("list-of-jugadores");
-		
+		List<Jugador> listJugadores = jugadorService.getJugadoresEquipo(id);
 		List<Jugador> jugadores = jugadorService.getJugadores();
-		modelAndView.addObject("jugadores", jugadores);
+		modelAndView.addObject("jugadores", listJugadores);
 		
-		return modelAndView;
-	}
-	
-	@RequestMapping(value="/edit/{id}", method=RequestMethod.GET)
-	public ModelAndView editJugadorPage(@PathVariable Integer id) {
-	
-		ModelAndView modelAndView = new ModelAndView("edit-jugador-form");
-		Jugador jugador = jugadorService.getJugador(id);
-		modelAndView.addObject("jugador", jugador);
 		return modelAndView;
 	}
 	

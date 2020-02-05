@@ -14,7 +14,8 @@ ${message}<br/>
 <a role="button" href="${pageContext.request.contextPath}/Manager/add.html">añadir nuevo manager</a><br/>
 <a role="button" href="${pageContext.request.contextPath}/Jugador/add.html">añadir nuevo jugador</a><br/>
 <a role="button" href="${pageContext.request.contextPath}/Manager/list.html">Lista de managers</a><br/>
-<a role="button" href="${pageContext.request.contextPath}/Jugador/list.html">Lista de jugadores</a><br/>
+<a role="button" href="${pageContext.request.contextPath}/Jugador/list/${id}">Lista de jugadores</a><br/>
+<a role="button" href="${pageContext.request.contextPath}/Manager/login.html">Usuario Manager</a><br/>
 </p>
 </body>
 </html>

@@ -52,4 +52,13 @@ public class ManagerDAOImpl implements ManagerDAO{
 		return getCurrentSession().createQuery("from Manager").list();
 	}
 
+	public Manager getLogManager(String usuario) {
+		String hql ="from Manager m where m.usuario = :usuario";
+		List<Manager> m = getCurrentSession().createQuery(hql).setParameter("usuario", usuario).list();
+		if(m.size() > 0) {
+			return m.get(0);
+		}
+		return null;
+	}
+
 }

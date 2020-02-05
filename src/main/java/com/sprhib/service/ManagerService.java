@@ -9,6 +9,7 @@ public interface ManagerService {
 	public void addManager(Manager manager);
 	public void updateManager(Manager manager);
 	public Manager getManager(int id);
+	public Manager getLogManager(String usuario);
 	public void deleteManager(int id);
 	public List<Manager> getManagers();
 

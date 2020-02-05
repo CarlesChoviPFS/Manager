@@ -8,12 +8,14 @@ import org.springframework.web.servlet.ModelAndView;
 public class LinkController {
 	
 	@RequestMapping(value="/")
-	public ModelAndView mainPage() {
-		return new ModelAndView("home");
+	public String mainPage() {
+		//return new ModelAndView("home");
+		return "redirect:/Manager/login";
 	}
 	
 	@RequestMapping(value="/index")
-	public ModelAndView indexPage() {
-		return new ModelAndView("home");
+	public String indexPage() {
+		//return new ModelAndView("home");
+		return mainPage();
 	}
 }
